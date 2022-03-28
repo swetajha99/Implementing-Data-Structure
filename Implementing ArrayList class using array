@@ -1,0 +1,88 @@
+// Implementing ArrayList class using array
+
+
+import java.util.*;
+
+class ArrayListClass{
+    int[] arr;
+    int current;
+    int capacity;
+    
+    public ArrayListClass(){
+        arr = new int[1];
+        capacity = 1;
+        current =0;
+    }
+    
+    public void push(int data){
+        if(current==capacity){
+            int[] temp = new int[capacity*2];
+           for(int i=0;i<capacity;i++){
+               temp[i]=arr[i];
+           }
+           capacity*=2;
+        arr=temp;
+        }
+        arr[current]=data;
+        current++;
+    }
+    
+    public void push(int data,int index){
+        if(index==capacity){
+            push(data);
+        }
+        else{
+            arr[index]=data;
+        }
+    }
+    
+    int get(int index){
+        if(index<current) return arr[index];
+        
+        return-1;
+    }
+    
+    void pop(){
+        current--;
+    }
+    
+    int size(){
+        return current;
+    }
+    
+    int getCapacity(){
+        return capacity;
+    }
+    
+    void print(){
+        for(int i=0;i<current;i++){
+            System.out.print(arr[i]+" ");
+        }
+        System.out.println();
+    }
+}
+public class Main
+{
+	public static void main(String[] args) {
+		ArrayListClass lst = new ArrayListClass();
+		
+		lst.push(50);
+		lst.push(57);
+		lst.push(54);
+		lst.push(53);
+		lst.push(56);
+		lst.push(60);
+		
+		lst.push(45,3);
+		
+		lst.get(6);
+		
+		lst.pop();
+		
+		lst.size();
+		
+		lst.getCapacity();
+		
+		lst.print();
+	}
+}
