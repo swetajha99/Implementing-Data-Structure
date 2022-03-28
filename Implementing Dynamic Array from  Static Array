@@ -1,0 +1,67 @@
+// Implementing Dynamic Array from Static Array
+
+class Array{
+    private int[] items;
+    private int count;
+    
+    public  Array(int length){
+        items = new int[length];
+    }
+    
+    public void print(){
+        for(int i=0;i<count;i++){
+            System.out.println(items[i]);
+        }
+    } 
+    
+    public void insert(int number){
+        items[count]=number;
+        count++;
+        
+        //if the array size is full, resize items
+        if(items.length==count){
+            int[] newitems = new int[count*2];
+            
+            for(int i=0;i<count;i++){
+                newitems[i]=items[i];
+            }
+            items=newitems;
+        }
+    }
+    
+    //Delete
+    
+    public void removeAt(int index){
+        if(index<0 || index>=count){
+            throw new IllegalArgumentException();
+        }
+        
+        for(int i=index;i<count;i++){
+            items[i]=items[i+1];
+        }
+        count--;
+    }
+    
+    //Search
+    public int indexOf(int number){
+        for(int i=0;i<count;i++){
+            if(number == items[i]){
+               return i;
+            }
+        }
+       return -1;
+    }
+}
+public class Main{
+public static void main(String args[]){
+    Array arr = new Array(3);
+    arr.insert(7);
+    arr.insert(8);
+    arr.insert(9);
+    arr.insert(10);
+    arr.insert(11);
+    arr.removeAt(4);
+    arr.print();
+    System.out.println(arr.indexOf(8));
+}
+}
